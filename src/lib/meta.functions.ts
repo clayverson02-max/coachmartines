@@ -33,5 +33,6 @@ export const sendMetaEvent = createServerFn({method:'POST'})
     if(new URL(data.url).origin !== new URL(request.url).origin) return {ok:false};
     const externalId = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(uuid)))).map(x=>x.toString(16).padStart(2,'0')).join('');
     const response=await fetch(`https://graph.facebook.com/v23.0/${META_PIXEL_ID}/events`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_token:accessToken,data:[{event_name:data.name,event_time:Math.floor(Date.now()/1000),event_id:data.id,action_source:'website',event_source_url:data.url,user_data:{external_id:[externalId],client_user_agent:request.headers.get('user-agent') || undefined,client_ip_address:request.headers.get('cf-connecting-ip') || undefined,fbp:data.fbp,fbc:data.fbc},custom_data:{variante:'quiz',rol:data.rol,step:data.step,plan:data.plan,...(data.plan ? {currency:'USD',value:data.plan==='completo'?5:4.5,content_name:data.plan==='completo'?'Paquete Completo':'Paquete Básico',purchase_trigger:'checkout_click'}:{})}}]})});
-    return {ok:response.ok};
+    const result = await response.json() as {error?:{code?:number;error_subcode?:number}};
+    return {ok:response.ok,...(!response.ok?{code:result.error?.code,subcode:result.error?.error_subcode}:{})};
   });
