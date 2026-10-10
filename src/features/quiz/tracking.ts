@@ -19,7 +19,7 @@ export function track(name:string, extra:{rol?:'entrenador'|'jugador';step?:stri
   try {if(sessionStorage.getItem(key))return Promise.resolve();sessionStorage.setItem(key,'1');}catch{/* Tracking still works without storage. */}
   const id=crypto.randomUUID();
   const standard=['PageView','ViewContent','InitiateCheckout','Purchase'].includes(name);
-  const params={variante:'quiz',...extra,...(extra.plan?{currency:'USD',value:extra.plan==='completo'?5:4.5,purchase_trigger:'checkout_click'}:{})};
+  const params={variante:'quiz',...extra,...(extra.plan?{currency:'USD',value:extra.plan==='completo'?4.5:4,purchase_trigger:'checkout_click'}:{})};
   window.fbq?.(standard?'track':'trackCustom',name,params,{eventID:id});
   const cookie=(name:string)=>document.cookie.split('; ').find(x=>x.startsWith(name+'='))?.split('=').slice(1).join('=');
   return (trackingSession ||= createTrackingSession()).then(session=>sendMetaEvent({data:{session,name,id,url:window.location.href,...extra,...(cookie('_fbp')?{fbp:cookie('_fbp')} : {}),...(cookie('_fbc')?{fbc:cookie('_fbc')} : {})}})).then(()=>undefined).catch(()=>undefined);
