@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check, CircleX, LockKeyhole, ShieldCheck, TriangleAlert, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CHECKOUT_BASICO, CHECKOUT_COMPLETO, PRECO_BASICO, PRECO_COMPLETO, PRECO_ORIGINAL, VIDEO_URL } from '@/config/quiz';
