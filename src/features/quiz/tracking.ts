@@ -22,5 +22,5 @@ export function track(name:string, extra:{rol?:'entrenador'|'jugador';step?:stri
   const params={variante:'quiz',...extra,...(extra.plan?{currency:'USD',value:extra.plan==='completo'?5:4.5,purchase_trigger:'checkout_click'}:{})};
   window.fbq?.(standard?'track':'trackCustom',name,params,{eventID:id});
   const cookie=(name:string)=>document.cookie.split('; ').find(x=>x.startsWith(name+'='))?.split('=').slice(1).join('=');
-  return (trackingSession ||= createTrackingSession()).then(session=>sendMetaEvent({data:{session,name:name as Parameters<typeof sendMetaEvent>[0]['data']['name'],id,url:window.location.href,...extra,fbp:cookie('_fbp'),fbc:cookie('_fbc')}})).then(()=>undefined).catch(()=>undefined);
+  return (trackingSession ||= createTrackingSession()).then(session=>sendMetaEvent({data:{session,name,id,url:window.location.href,...extra,...(cookie('_fbp')?{fbp:cookie('_fbp')} : {}),...(cookie('_fbc')?{fbc:cookie('_fbc')} : {})}})).then(()=>undefined).catch(()=>undefined);
 }

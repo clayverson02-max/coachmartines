@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 export type Role='entrenador'|'jugador';
-export type QuizState={step:number;rol:Role;answers:number[][]};
+export type QuizAnswers=[number[],number[],number[],number[]];
+export type QuizState={step:number;rol:Role;answers:QuizAnswers};
 const initial:QuizState={step:0,rol:'entrenador',answers:[[],[],[],[]]};
 const Context=createContext<{state:QuizState;update:(state:QuizState)=>void;ready:boolean}|null>(null);
 export function QuizProvider({children}:{children:ReactNode}) {
