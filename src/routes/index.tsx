@@ -1,24 +1,39 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+import { createFileRoute } from '@tanstack/react-router';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowLeft, ArrowRight, Check, ChevronRight, CircleCheck, ClipboardCheck, Clock3, LockKeyhole, TriangleAlert } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { QuizProvider, useQuiz, type Role } from '@/features/quiz/state';
+import { quizCopy } from '@/features/quiz/copy';
+import { Result } from '@/features/quiz/Result';
+import { initTracking, track } from '@/features/quiz/tracking';
+import hero from '@/assets/hero-biblioteca-pdf.webp.asset.json';
+export const Route = createFileRoute('/')({head:()=>({meta:[{title:'Diagnóstico de fútbol — Entrena con Método'},{name:'description',content:'Descubre qué falla en tus entrenamientos y encuentra tu ruta con el Coach Martínez.'},{property:'og:title',content:'Tu diagnóstico — Entrena con Método'},{property:'og:description',content:'Un diagnóstico gratuito para entrenadores y jugadores. Entrena con un método profesional.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:Index});
+function Index(){return <QuizProvider><Quiz/></QuizProvider>;}
+const stepNames=['intro','rol','q1','insight_1','q2','insight_2','q3','insight_3','q4','loading','result'];
+function Quiz(){
+ const {state,update,ready}=useQuiz();const [locked,setLocked]=useState(false);const lock=useRef(false);const timer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);const [loadingProgress,setLoadingProgress]=useState(0);
+ const {step,rol,answers}=state;const copy=quizCopy[rol];
+ useEffect(()=>{if(ready)initTracking();},[ready]);
+ useEffect(()=>{if(!ready)return;window.scrollTo({top:0,behavior:'instant'});track('quiz_step_view',{rol:step>1?rol:undefined,step:stepNames[step]});},[step,rol,ready]);
+ useEffect(()=>{if(step!==9||!ready)return;track('quiz_loading',{rol});const start=Date.now();const interval=setInterval(()=>setLoadingProgress(Math.min(100,Math.round((Date.now()-start)/35))),50);const end=setTimeout(()=>update({...state,step:10}),3500);return()=>{clearInterval(interval);clearTimeout(end);};},[step,ready]);
+ useEffect(()=>()=>clearTimeout(timer.current),[]);
+ function go(next:number){update({...state,step:next});}
+ function chooseRole(role:Role){if(lock.current)return;lock.current=true;setLocked(true);update({...state,rol:role,answers:role===rol?answers:[[],[],[],[]]});track('quiz_rol',{rol:role});timer.current=setTimeout(()=>{update({...state,rol:role,answers:role===rol?answers:[[],[],[],[]],step:2});lock.current=false;setLocked(false);},400);}
+ const qIndex=step===2?0:step===4?1:step===6?2:3;
+ function select(index:number){if(lock.current)return;const nextAnswers=answers.map(a=>[...a]);if(qIndex<2){lock.current=true;setLocked(true);nextAnswers[qIndex]=[index];update({...state,answers:nextAnswers});track('quiz_q'+(qIndex+1),{rol});timer.current=setTimeout(()=>{update({...state,answers:nextAnswers,step:step+1});lock.current=false;setLocked(false);},400);}else {nextAnswers[qIndex]=nextAnswers[qIndex].includes(index)?nextAnswers[qIndex].filter(i=>i!==index):[...nextAnswers[qIndex],index];update({...state,answers:nextAnswers});}}
+ function back(){if(locked)return;const prev:Record<number,number>={1:0,2:1,3:2,4:2,5:4,6:4,7:6,8:6};go(prev[step]??0);}
+ if(!ready)return <div className="quiz-shell"><div className="initial-loader" aria-label="Cargando"><ClipboardCheck/></div></div>;
+ if(step===10)return <><Brand/><Result/></>;
+ const insight=[3,5,7].includes(step);const question=[2,4,6,8].includes(step);
+ return <div className={'quiz-page'+(insight?' insight-page':'')}><Brand/><div className="progress-track"><div className={'progress-fill progress-'+step}/></div><main className="quiz-shell">
+ {step>0&&step<9&&<div className="step-nav"><Button variant="ghost" size="icon" onClick={back} disabled={locked} aria-label="Volver a la pregunta anterior"><ArrowLeft/></Button><span>{step===1?'TU PERFIL':insight?'UN MOMENTO PARA ENTENDER':`PREGUNTA ${qIndex+1} DE 4`}</span><span className="step-count">{Math.round(step/9*100)}%</span></div>}
+ <div key={step} className="screen-transition">
+ {step===0&&<div className="intro"><div className="intro-badge"><Clock3 size={14}/><span>DIAGNÓSTICO GRATUITO · 1 MINUTO</span></div><h1>¿Sigues entrenando <span>a ciegas?</span> Entonces estás desperdiciando talento, tiempo y partidos. Y probablemente nadie te lo dijo.</h1><p className="intro-description">Responde 4 preguntas y descubre exactamente en qué estás fallando en tus entrenamientos (y cómo corregirlo hoy).</p><Button className="primary-cta intro-cta" onClick={()=>{track('quiz_start');go(1);}}>HACER MI DIAGNÓSTICO GRATIS<ArrowRight/></Button><div className="intro-micro"><LockKeyhole size={13}/>Sin registro · Resultado inmediato</div><div className="social-proof"><span aria-label="5 estrellas">★★★★★</span><span>4.9/5 · +2.146 evaluaciones</span></div><div className="intro-image"><img src={hero.url} alt="Biblioteca de entrenamientos Entrena con Método"/><span className="image-caption"><span className="live-dot"/>ENTRENA CON UN PLAN. NO CON SUERTE.</span></div><div className="intro-bottom"><ClipboardCheck size={16}/><span>Entrenadores y jugadores · Todos los niveles</span></div></div>}
+ {step===1&&<div className="question-screen"><span className="eyebrow">CADA ROL NECESITA UN MÉTODO</span><h1>Para darte un diagnóstico real, dime: ¿cuál es tu rol en el fútbol?</h1><div className="answers role-answers">{(['entrenador','jugador'] as const).map(role=><Button key={role} variant="outline" className={'answer role-answer'+(locked&&rol===role?' selected':'')} disabled={locked} onClick={()=>chooseRole(role)}><span className="role-emoji">{role==='entrenador'?'🧢':'⚽'}</span><span>{role==='entrenador'?'Soy entrenador':'Soy jugador'}</span>{locked&&rol===role?<CircleCheck/>:<ChevronRight/>}</Button>)}</div></div>}
+ {question&&<div className="question-screen"><span className="eyebrow">{qIndex===3?'TU PRÓXIMO PASO':'TU ENTRENAMIENTO, SIN FILTROS'}</span><h1>{copy.questions[qIndex].title}</h1>{qIndex===3&&<p className="question-subtitle">Marca lo que te ayudaría</p>}<div className="answers">{copy.questions[qIndex].options.map((option,i)=><Button key={option} variant="outline" aria-pressed={answers[qIndex].includes(i)} className={'answer'+(answers[qIndex].includes(i)?' selected':'')} disabled={locked} onClick={()=>select(i)}><span className={qIndex<2?'answer-letter':'answer-checkbox'}>{qIndex<2?String.fromCharCode(65+i):answers[qIndex].includes(i)?<Check/>:null}</span><span>{option}</span>{qIndex<2&&answers[qIndex].includes(i)&&<CircleCheck/>}</Button>)}</div>{qIndex>=2&&<div className="continue-dock"><Button className="primary-cta" disabled={!answers[qIndex].length} onClick={()=>{track('quiz_q'+(qIndex+1),{rol});go(step+1);}}>{qIndex===3?'SÍ, ESO ES LO QUE ME FALTA':'CONTINUAR'}<ArrowRight/></Button></div>}</div>}
+ {insight&&<div className="insight-screen"><div className="insight-icon"><TriangleAlert/></div><span className="eyebrow">LO QUE NECESITAS SABER</span><h1>{copy.insights[(step-3)/2].title.replace('⚠️ ','')}</h1><p>{copy.insights[(step-3)/2].text}</p><div className="insight-line"/><Button className="primary-cta" onClick={()=>go(step+1)}>ENTENDIDO, SIGUE →</Button></div>}
+ {step===9&&<div className="loading-screen"><div className="loading-orbit"><ClipboardCheck/><strong>{loadingProgress}%</strong></div><h1>Analizando tus respuestas…</h1><div className="loading-steps">{['Detectando tus errores de entrenamiento…','Cruzando con +2.000 ejercicios y +250 sesiones…','Armando tu ruta personalizada…'].map((label,i)=><p className={loadingProgress>=(i+1)*27?'complete':''} key={label}><CircleCheck/>{label}</p>)}</div></div>}
+ </div></main>{step<9&&!insight&&<footer className="quiz-footer"><ShieldMark/> <span>TU TALENTO. UN MÉTODO. EL SIGUIENTE NIVEL.</span></footer>}</div>;
 }
+function ShieldMark(){return <LockKeyhole size={12}/>;}
+function Brand(){return <header className="brand-header"><div className="brand-mark"><span>e</span><span>m</span></div><div className="brand-name">ENTRENA <span>CON MÉTODO</span><small>COACH MARTÍNEZ</small></div></header>;}
