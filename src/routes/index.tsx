@@ -8,7 +8,8 @@ import { Result } from '@/features/quiz/Result';
 import { initTracking, track } from '@/features/quiz/tracking';
 import hero from '@/assets/hero-biblioteca-pdf.webp.asset.json';
 export const Route = createFileRoute('/')({head:()=>({meta:[{title:'Diagnóstico de fútbol — Entrena con Método'},{name:'description',content:'Descubre qué falla en tus entrenamientos y encuentra tu ruta con el Coach Martínez.'},{property:'og:title',content:'Tu diagnóstico — Entrena con Método'},{property:'og:description',content:'Un diagnóstico gratuito para entrenadores y jugadores. Entrena con un método profesional.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:Index});
-function Index(){return <QuizProvider><Quiz/></QuizProvider>;}
+const UTMFY_URL='https://cdn.utmify.com.br/scripts/utms/latest.js';
+function Index(){useEffect(()=>{if(document.querySelector(`script[src="${UTMFY_URL}"]`))return;const script=document.createElement('script');script.src=UTMFY_URL;script.async=true;script.defer=true;script.setAttribute('data-utmify-prevent-subids','');document.head.appendChild(script);},[]);return <QuizProvider><Quiz/></QuizProvider>;}
 const stepNames=['intro','rol','q1','insight_1','q2','insight_2','q3','insight_3','q4','loading','result'];
 function Quiz(){
  const {state,update,ready}=useQuiz();const [locked,setLocked]=useState(false);const lock=useRef(false);const timer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);const [loadingProgress,setLoadingProgress]=useState(0);
