@@ -4,4 +4,5 @@
 - [x] Proteger Meta API en Cloud y rastrear pasos y clics sin duplicación; Meta confirmó aceptación.
 - [x] Aplicar diseño solicitado y ocultar badge.
 - [x] Verificar recorrido de ambos roles, navegación, refresh, móvil, parámetros Hotmart y tracking.
+- [x] Ajustar precios: Paquete Completo US$6,50 y Paquete Básico US$4,50 (etiqueta de descuento recalculada a 87%).
 - [ ] Video: pendiente de URL del usuario.
