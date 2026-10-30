@@ -167,3 +167,15 @@ body{font-family:'Inter',sans-serif;letter-spacing:0;-webkit-font-smoothing:anti
 a[href*="lovable.dev"], iframe[src*="lovable.dev"], div[style*="Edit with Lovable"], .lovable-badge {display:none!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;position:absolute!important;z-index:-9999!important}
 
 .question-screen:has(.continue-dock){padding-bottom:90px}.continue-dock{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(480px,100%);padding:16px 24px;z-index:20;border-top:1px solid var(--border)}
+a[href*="lovable.dev"],
+iframe[src*="lovable.dev"],
+div[style*="Edit with Lovable"],
+.lovable-badge,
+#lovable-badge {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: -9999 !important;
+}
