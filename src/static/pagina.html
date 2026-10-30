@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Una sola masa, 25 galletas navideñas listas para regalar o vender. Guía en PDF con recetas, decoración fácil, empaque y planilla de precio.">
+<!-- PIXEL AQUI -->
+<title>Galletas de Navidad para Vender</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600;800&display=swap">
+<style>
+/* Layout: una sola columna estrecha tipo receta impresa; bandas de color a lo ancho con contenido centrado de 680px. Look único (papel de horno), sin modo oscuro a propósito. */
+:root{
+  --paper:#FBF6EE; --dough:#E9C99A; --pine:#1F4A3A; --cranberry:#B3283D; --ink:#2A1E17; --icing:#FFFFFF; --muted:#3d3029;
+  --display:"Young Serif", Georgia, "Times New Roman", serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.band{padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:56px}
+.wrap{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2{font-family:var(--display);font-weight:400;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,7vw,3.1rem)}
+h2{font-size:clamp(1.6rem,5vw,2.2rem)}
+p{margin:0}
+.eyebrow{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--cranberry)}
+.hero{background:var(--pine);color:var(--icing)}
+.hero .eyebrow{color:var(--dough)}
+.hero p.sub{font-size:1.15rem;color:#E8EFE9}
+.cta{display:inline-block;text-align:center;background:var(--cranberry);color:var(--icing);font-weight:800;font-size:1.1rem;letter-spacing:.03em;padding:18px 28px;border-radius:999px;text-decoration:none;box-shadow:0 6px 0 #7E1A2A}
+.cta:hover{filter:brightness(1.08)}
+.cta:focus-visible{outline:3px solid var(--dough);outline-offset:3px}
+.note{font-size:.95rem}
+.formula{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-family:var(--display);font-size:1.25rem}
+.formula span{background:var(--icing);color:var(--pine);border-radius:12px;padding:8px 14px}
+.formula b{color:var(--dough);font-weight:400}
+ul.pain{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+ul.pain li{padding-left:30px;position:relative}
+ul.pain li::before{content:"✕";position:absolute;left:0;color:var(--cranberry);font-weight:800}
+.dough{background:var(--dough)}
+.items{display:grid;gap:14px}
+.item{background:var(--icing);border:2px dashed var(--pine);border-radius:16px;padding:18px 20px;display:grid;gap:4px}
+.item strong{font-family:var(--display);font-weight:400;font-size:1.2rem;color:var(--pine)}
+.recipe{border-left:3px solid var(--cranberry);padding-left:16px;color:var(--muted);font-size:.95rem}
+.who{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.who div{min-width:0}
+.price{background:var(--pine);color:var(--icing);text-align:center}
+.price .wrap{align-items:center}
+.amount{font-family:var(--display);font-size:4rem;line-height:1;color:var(--dough)}
+.amount small{font-size:1.2rem;color:var(--icing)}
+.guarantee{display:flex;gap:16px;align-items:flex-start}
+.seal{flex:0 0 72px;height:72px;border-radius:50%;background:var(--cranberry);color:var(--icing);display:grid;place-items:center;font-family:var(--display);font-size:1.6rem;text-align:center;line-height:1}
+.seal small{display:block;font-family:var(--body);font-size:.6rem;letter-spacing:.1em}
+details{background:var(--icing);border-radius:12px;padding:14px 18px}
+details+details{margin-top:10px}
+summary{font-weight:600;cursor:pointer}
+details p{margin-top:8px;color:var(--muted)}
+footer{font-size:.8rem;color:var(--muted);text-align:center}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{margin:0}
+#lovable-badge,[id*=lovable-badge],a[href*="lovable.dev"][target=_blank]{display:none!important}
+@media (prefers-reduced-motion:no-preference){.cta{transition:filter .2s, transform .2s}.cta:active{transform:translateY(3px)}}
+</style>
+
+<section class="band hero">
+  <div class="wrap">
+    <h1>Una sola masa, 25 galletas navideñas listas para regalar o vender</h1>
+    <p class="sub">Recetas paso a paso, decoración fácil sin manga profesional, empaques económicos y una planilla para calcular tu precio sin adivinar.</p>
+    <div class="formula" aria-label="1 masa base, 5 sabores, 5 formas: 25 galletas"><span>1 masa base</span><b>×</b><span>5 sabores</span><b>×</b><span>5 formas</span><b>=</b><span>25 galletas</span></div>
+    <a class="cta" href="#precio">QUIERO MI GUÍA</a>
+    <p class="note">PDF de descarga inmediata · Pago único · Garantía de 7 días</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>¿Te pasa esto?</h2>
+    <ul class="pain">
+      <li>Quieres aprovechar diciembre, pero no sabes por dónde empezar.</li>
+      <li>Tus galletas se deforman en el horno o se ablandan en pocos días.</li>
+      <li>Ves galletas decoradas preciosas y crees que necesitas herramientas caras.</li>
+      <li>No sabes cuánto cobrar y te da miedo poner un precio injusto.</li>
+      <li>Cuando por fin te decides, ya todos compraron sus regalos.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="band dough">
+  <div class="wrap">
+    <h2>El Método 1 Masa</h2>
+    <p>En vez de aprender 25 recetas diferentes, aprendes UNA masa base que funciona y la transformas: chocolate, jengibre, vainilla, canela o naranja, con formas distintas y decoraciones sencillas.</p>
+    <p class="recipe">Masa base: 500 g de harina · 250 g de mantequilla · 200 g de azúcar · 1 huevo · horno a 180 °C por 10–12 min. A partir de aquí, la guía te muestra cada variación.</p>
+    <p>Compras menos ingredientes, desperdicias menos y produces con orden.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Qué recibes</h2>
+    <div class="items">
+      <div class="item"><strong>Guía principal en PDF</strong>25 recetas de galletas navideñas a partir de 1 masa base, con cantidades, tiempos y temperaturas.</div>
+      <div class="item"><strong>Decoración sin complicaciones</strong>Glasé real, técnica del palillo, bolsita de plástico en lugar de manga y colores con pocos colorantes.</div>
+      <div class="item"><strong>Empaque que se ve profesional</strong>Cajitas, bolsas con cinta, frascos y etiquetas con materiales económicos.</div>
+      <div class="item"><strong>Planilla de costo y precio</strong>Escribe lo que pagaste por ingredientes y empaque y ve el costo de cada cajita.</div>
+      <div class="item"><strong>Cómo ofrecer tus cajitas</strong>Mensajes listos para WhatsApp e ideas para vecinas, familia, redes sociales y empresas.</div>
+      <div class="item"><strong>Calendario de producción</strong>Qué hornear y cuándo, para llegar a Navidad sin estrés.</div>
+    </div>
+    <a class="cta" href="#precio">QUIERO MI GUÍA AHORA</a>
+  </div>
+</section>
+
+<section class="band dough">
+  <div class="wrap">
+    <h2>¿Para quién es?</h2>
+    <div class="who">
+      <div><p><strong>Para quien hornea en casa</strong>, aunque sea principiante.</p></div>
+      <div><p><strong>Para quien busca un ingreso extra de temporada</strong> con poca inversión.</p></div>
+      <div><p><strong>Para quien quiere regalar</strong> algo hecho a mano y bonito.</p></div>
+    </div>
+    <p class="note"><strong>No es para ti</strong> si buscas pastelería profesional con equipos industriales.</p>
+  </div>
+</section>
+
+<section class="band price" id="precio">
+  <div class="wrap">
+    <h2>Todo por menos de lo que cuesta una cajita de galletas en una pastelería</h2>
+    <p class="amount"><small>US$</small> 7</p>
+    <p>Pago único · Guía + planilla + calendario</p>
+    <a class="cta" href="#" data-checkout target="_blank" rel="noopener">QUIERO MI GUÍA AHORA</a>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="seal">7<small>DÍAS</small></div>
+      <div><h2>Garantía de 7 días</h2><p>Si sientes que la guía no es para ti, pides el reembolso directamente en Hotmart, sin preguntas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band dough">
+  <div class="wrap">
+    <h2>Preguntas frecuentes</h2>
+    <div>
+      <details><summary>¿Necesito experiencia?</summary><p>No. Las recetas están explicadas paso a paso para principiantes.</p></details>
+      <details><summary>¿Necesito equipo especial?</summary><p>No. Un horno doméstico, bandejas y cortadores (o un vaso y un cuchillo) son suficientes.</p></details>
+      <details><summary>¿Cómo lo recibo?</summary><p>Al confirmar el pago, recibes el acceso por correo para descargar el PDF.</p></details>
+      <details><summary>¿Sirve en mi país?</summary><p>Sí. Usamos ingredientes que se encuentran en supermercados de toda Latinoamérica, con alternativas.</p></details>
+      <details><summary>¿Me garantiza ganar dinero?</summary><p>No prometemos ingresos: tus resultados dependen de tu trabajo, tu zona y tus precios. Te damos las recetas y las herramientas para empezar con orden.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="band hero">
+  <div class="wrap">
+    <h2>La temporada navideña es corta</h2>
+    <p class="sub">Si quieres hornear tus primeras cajitas este año, empieza hoy con una sola masa.</p>
+    <a class="cta" href="#precio">QUIERO MI GUÍA AHORA</a>
+  </div>
+</section>
+
+<footer class="band"><div class="wrap"><p>Producto digital (PDF). Los resultados dependen de cada persona. Pagos procesados por Hotmart.</p></div></footer>
+
+<script>
+// Link de checkout (Hotmart/Cakto). Las UTM del anuncio pasan al checkout.
+const CHECKOUT_URL = "";
+document.querySelectorAll("[data-checkout]").forEach(a => a.addEventListener("click", e => {
+  if (!CHECKOUT_URL) { e.preventDefault(); return; }
+  const q = location.search.slice(1);
+  a.href = q ? CHECKOUT_URL + (CHECKOUT_URL.includes("?") ? "&" : "?") + q : CHECKOUT_URL;
+  try { window.fbq && fbq("track", "InitiateCheckout", {value: 7, currency: "USD"}); } catch (err) {}
+}));
+document.querySelectorAll('a[href="#precio"]').forEach(a => a.addEventListener("click", () => { try { window.fbq && fbq("trackCustom", "VerPrecio"); } catch (err) {} }));
+</script>
+
+</body></html>
