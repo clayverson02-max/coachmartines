@@ -181,8 +181,8 @@ a[href*="lovable.dev"],iframe[src*="lovable.dev"],div[style*="Edit with Lovable"
     </div>
     <div id="cupon-on" hidden>
       <p class="ok-badge">✅ Cupón activado</p>
-      <p class="save">Ahorras US$ 25,01</p>
-      <p class="amount"><small>US$</small> 9,99</p>
+      <p class="save">Ahorras US$ 27,50</p>
+      <p class="amount"><small>US$</small> 7,50</p>
       <a class="cta" href="#" data-checkout target="_blank" rel="noopener">COMPRAR AHORA Y DESCARGAR<small>Acceso inmediato en tu correo</small></a>
     </div>
     <p class="trust">🔒 Pago seguro · ✅ Garantía de 7 días</p>
@@ -222,11 +222,11 @@ document.querySelectorAll("[data-checkout]").forEach(a => a.addEventListener("cl
   if (!CHECKOUT_URL) { e.preventDefault(); return; }
   const q = location.search.slice(1);
   a.href = q ? CHECKOUT_URL + (CHECKOUT_URL.includes("?") ? "&" : "?") + q : CHECKOUT_URL;
-  try { window.fbq && fbq("track", "InitiateCheckout", {value: 9.99, currency: "USD"}); } catch (err) {}
+  try { window.fbq && fbq("track", "InitiateCheckout", {value: 7.5, currency: "USD"}); } catch (err) {}
 }));
 let leadSent=false;
 document.querySelectorAll('a[href="#precio"]').forEach(a => a.addEventListener("click", () => { if(leadSent) return; leadSent=true; try { window.fbq && fbq("track", "Lead"); } catch (err) {} }));
-// Cupón: revela el precio real de la oferta (US$ 9,99)
+// Cupón: revela el precio real de la oferta (US$ 7,50)
 document.getElementById("activar").addEventListener("click", () => {
   document.getElementById("cupon-off").hidden = true;
   document.getElementById("precio-normal").innerHTML = "<s>US$ 35</s>";
