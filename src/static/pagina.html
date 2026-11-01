@@ -24,7 +24,9 @@ src="https://www.facebook.com/tr?id=1351267993847099&ev=PageView&noscript=1"
 <style>
 :root{--paper:#FFF9F1;--pine:#1F4A3A;--pine2:#0f2a20;--red:#C8102E;--gold:#F2C14E;--ink:#1a1410;--muted:#4a3f38;
 --h:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;--b:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:light}
-*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+#precio{scroll-margin-top:20px}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--b);font-size:20px;line-height:1.6}
 img,video{max-width:100%;display:block;height:auto}
 .wrap{max-width:640px;margin:0 auto;padding:0 18px}
