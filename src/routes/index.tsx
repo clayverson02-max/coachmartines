@@ -3,9 +3,12 @@ import rawHtml from "../static/pagina.html?raw";
 import video1 from "../../Creating_Christmas_biscuit_adver…_b65dc9a0.mp4?url";
 import video2 from "../../Creating_Christmas_biscuit_adver…_ecf5fdb6.mp4?url";
 
-// Fotos ilustrativas: reemplazar por los pointers de Lovable Assets cuando estén disponibles.
-const FOTO1 = "img/gancho1.jpg";
-const FOTO2 = "img/gancho3.jpg";
+import foto1 from "../assets/galletas-foto-1.webp.asset.json";
+import foto2 from "../assets/galletas-foto-2.webp.asset.json";
+
+// Fotografías ilustrativas de galletas y presentación.
+const FOTO1 = foto1.url;
+const FOTO2 = foto2.url;
 
 const html = rawHtml
   .replaceAll("__VIDEO1__", video1)
