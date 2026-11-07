@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import rawHtml from "../static/pagina.html?raw";
-import video1 from "../../Creating_Christmas_biscuit_adver…_b65dc9a0.mp4?url";
-import video2 from "../../Creating_Christmas_biscuit_adver…_ecf5fdb6.mp4?url";
 
 import foto1 from "../assets/galletas-foto-1.webp.asset.json";
 import foto2 from "../assets/galletas-foto-2.webp.asset.json";
@@ -11,8 +9,8 @@ const FOTO1 = foto1.url;
 const FOTO2 = foto2.url;
 
 const html = rawHtml
-  .replaceAll("__VIDEO1__", video1)
-  .replaceAll("__VIDEO2__", video2)
+  .replaceAll("__VIDEO1__", "/videos/galletas-presentacion.mp4")
+  .replaceAll("__VIDEO2__", "/videos/galletas-compartir.mp4")
   .replaceAll("__FOTO1__", FOTO1)
   .replaceAll("__FOTO2__", FOTO2);
 
