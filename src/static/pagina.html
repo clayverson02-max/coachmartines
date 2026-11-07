@@ -1,23 +1,9 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Prepara 25 variaciones de galletas navideñas con una sola masa. Recetas, decoración y presentación para sorprender en tu mesa, regalar o empezar a vender.">
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1351267993847099');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1351267993847099&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+<meta property="og:title" content="Galletas Navideñas · Método 1 Masa">
+<meta property="og:description" content="25 variaciones de galletas, decoración y empaque con una sola masa base.">
+<meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">
 <title>Galletas de Navidad para Vender</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;600;700&display=swap">
@@ -246,21 +232,52 @@ a[href*="lovable.dev"],iframe[src*="lovable.dev"],div[style*="Edit with Lovable"
   </div>
 </section>
 
-<footer><div class="wrap"><p>Producto digital. Las imágenes muestran ideas ilustrativas de presentación. Los resultados dependen de cada persona. Pagos procesados por la plataforma de pago.</p></div></footer>
+<footer><div class="wrap"><p>Producto digital. Las imágenes muestran ideas ilustrativas de presentación. Los resultados dependen de cada persona. Pagos procesados por la plataforma de pago.</p><a href="#privacidad">Privacidad y publicidad</a> · <a href="#privacidad" id="advertising-settings">Desactivar medición publicitaria</a><section id="privacidad"><h3>Privacidad y publicidad</h3><p>Cuando está permitido, compartimos con Meta las visitas, los clics hacia la oferta y el inicio del checkout, su fecha, un identificador del evento, la dirección de esta página, la dirección IP y el navegador, para medir publicidad y sus resultados. El inicio del checkout no confirma una compra. No enviamos correos ni datos del pedido. Sin un aviso de consentimiento, esta medición se bloquea en las regiones que lo exigen y cuando la ubicación es desconocida. Respetamos las señales de privacidad y puedes desactivar la medición con el enlace de arriba; tu decisión se guarda en este navegador.</p><p id="advertising-status" aria-live="polite"></p></section></div></footer>
 
 <div class="sticky" id="sticky"><a class="cta" href="#precio">VER OFERTA CON CUPÓN</a></div>
 
 <script>
+// Una instalación; eventos browser/API comparten eventID. Sin matching de clientes.
+let advertisingCountry, advertisingSession, advertisingReady=false;
+const consentRegions=new Set('AT BE BG HR CY CZ DK EE FI FR DE GR HU IS IE IT LV LI LT LU MT NL NO PL PT RO SK SI ES SE GB CH'.split(' '));
+function optedOut(){try{return navigator.globalPrivacyControl===true||localStorage.getItem('galletas-advertising-refusal')==='1';}catch{return true;}}
+function allowed(){return advertisingReady&&!optedOut();}
+async function reportMeta(name,params={}){
+  if(!allowed())return;
+  const id=crypto.randomUUID(),occurredAt=Math.floor(Date.now()/1000);
+  window.fbq('track',name,params,{eventID:id});
+  if(!advertisingSession)return;
+  try{await fetch('/api/public/galletas-events',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'event',country:advertisingCountry,optedOut:optedOut(),session:advertisingSession,name,id,occurredAt}),keepalive:true});}catch{}
+}
+function revokeAds(){advertisingReady=false;window.fbq&&window.fbq('consent','revoke');}
+document.getElementById('advertising-settings').addEventListener('click',()=>{try{localStorage.setItem('galletas-advertising-refusal','1');}catch{}revokeAds();document.getElementById('advertising-status').textContent='Medición publicitaria desactivada en este navegador.';});
+addEventListener('storage',()=>{if(optedOut())revokeAds();});
+(async()=>{
+  if(optedOut())return;
+  try{
+    const response=await fetch('/cdn-cgi/trace',{signal:AbortSignal.timeout(2000)});
+    if(!response.ok)return;
+    const trace=Object.fromEntries((await response.text()).trim().split('\n').map(line=>line.split('=')));
+    const country=trace.loc;
+    if(trace.h!==location.hostname||!country||!/^[A-Z]{2}$/.test(country)||['XX','T1'].includes(country)||consentRegions.has(country)||optedOut())return;
+    advertisingCountry=country;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=true;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=true;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1351267993847099',{}, {agent:'lovable'});
+    advertisingReady=true;
+    try{const r=await fetch('/api/public/galletas-events',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'session',country,optedOut:optedOut()})});const result=await r.json();advertisingSession=result.session;}catch{}
+    reportMeta('PageView');
+  }catch{}
+})();
 // Link de checkout (Hotmart/Cakto). Las UTM del anuncio pasan al checkout.
 const CHECKOUT_URL = "https://pay.hotmart.com/Q108271367I?checkoutMode=10";
 document.querySelectorAll("[data-checkout]").forEach(a => a.addEventListener("click", e => {
   if (!CHECKOUT_URL) { e.preventDefault(); return; }
   const q = location.search.slice(1);
   a.href = q ? CHECKOUT_URL + (CHECKOUT_URL.includes("?") ? "&" : "?") + q : CHECKOUT_URL;
-  try { window.fbq && fbq("track", "InitiateCheckout", {value: 7.5, currency: "USD"}); } catch (err) {}
+  reportMeta('InitiateCheckout', {value: 7.5, currency: 'USD'});
 }));
 let leadSent=false;
-document.querySelectorAll('a[href="#precio"]').forEach(a => a.addEventListener("click", () => { if(leadSent) return; leadSent=true; try { window.fbq && fbq("track", "Lead"); } catch (err) {} }));
+document.querySelectorAll('a[href="#precio"]').forEach(a => a.addEventListener("click", () => { if(leadSent||!allowed()) return; leadSent=true; reportMeta('Lead'); }));
 // Cupón: revela el precio real de la oferta (US$ 7,50)
 document.getElementById("activar").addEventListener("click", () => {
   document.getElementById("cupon-off").hidden = true;

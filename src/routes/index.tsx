@@ -18,6 +18,13 @@ const html = rawHtml
 
 // Página Galletas Navideñas: HTML estático servido tal cual.
 export const Route = createFileRoute("/")({
+  head: () => ({ meta: [
+    { title: 'Galletas Navideñas · Método 1 Masa' },
+    { name: 'description', content: '25 variaciones de galletas, decoración y empaque con una sola masa base.' },
+    { property: 'og:title', content: 'Galletas Navideñas · Método 1 Masa' },
+    { property: 'og:description', content: 'Prepara galletas para regalar o presentar con una guía digital y dos bonos.' },
+    { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary_large_image' },
+  ] }),
   server: {
     handlers: {
       GET: () =>
