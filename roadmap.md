@@ -5,4 +5,5 @@
 - [x] Aplicar diseño solicitado y ocultar badge.
 - [x] Verificar recorrido de ambos roles, navegación, refresh, móvil, parámetros Hotmart y tracking.
 - [x] Ajustar precios: Paquete Completo US$6,50 y Paquete Básico US$4,50 (etiqueta de descuento recalculada a 87%).
-- [ ] Video: pendiente de URL del usuario.
+- [x] Integrar pixel de Galletas y API protegida en Cloud, conservando precio y checkout.
+- [ ] Verificar recepción de Galletas en Meta tras publicación autorizada; la versión pública no se ha actualizado.
