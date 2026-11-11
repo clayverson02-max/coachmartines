@@ -27,7 +27,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;color:v
 a[href*="lovable.dev"],iframe[src*="lovable.dev"],.lovable-badge,#lovable-badge{display:none!important}
 .hero-image img{aspect-ratio:1;border:1px solid var(--line)}
 .hero-image .cap{margin:7px 0 0}
-.offer-visual{width:180px;aspect-ratio:1;object-fit:cover;border-radius:16px;margin:18px auto}
+.offer-visual{width:180px;aspect-ratio:720/1020;object-fit:contain;border-radius:16px;margin:18px auto}
 .section-lead{max-width:690px;color:var(--muted);margin:0 0 24px}
 .frictions,.materials,.bonuses,.uses{display:grid;gap:14px;margin:24px 0 0}
 .friction{border-left:3px solid var(--red);background:#fff;padding:16px 18px;border-radius:0 14px 14px 0;font-size:16px}
@@ -49,6 +49,19 @@ a[href*="lovable.dev"],iframe[src*="lovable.dev"],.lovable-badge,#lovable-badge{
 .use:nth-child(2){border-top:3px solid var(--red)}
 .cost-note{margin:16px 0 0;padding:15px 18px;background:#e9f2e9;border-radius:13px;color:var(--pine);font-size:15px}
 @media(min-width:680px){.materials,.frictions{grid-template-columns:repeat(3,minmax(0,1fr))}.bonuses,.uses{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.product-stage{position:relative;isolation:isolate;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:12px;padding:clamp(18px,5vw,36px);background:radial-gradient(ellipse at top,#2f654d,#102f25);border-radius:22px;overflow:hidden}
+.product-stage .book{box-shadow:7px 8px 0 #d3c3a8,13px 16px 27px #071b14a0;transform:rotate(-5deg);border-radius:4px}
+.product-stage .phone{transform:rotate(6deg);border:5px solid #141a16;border-radius:15px;background:#141a16;box-shadow:5px 12px 24px #071b1490;overflow:hidden}
+.product-stage img{width:100%;height:auto;aspect-ratio:720/1020;object-fit:contain;border:0;border-radius:0}
+.product-stage .phone span{display:block;color:white;font-size:clamp(8px,2vw,11px);padding:4px;text-align:center}
+.hero-secondary{display:block;text-align:center;font-weight:700;font-size:14px;margin-top:16px;text-underline-offset:4px}
+.sample-card .page-thumb,.bonus .page-thumb{display:block;padding:16px;background:#eee4d5}
+.sample-card .page-thumb img,.bonus .page-thumb img{aspect-ratio:720/1020;object-fit:contain;max-height:340px;width:100%;background:transparent}
+.sample-card .page-thumb:hover,.bonus .page-thumb:hover{background:#e4d4be}
+.preview-label{display:block;text-align:center;font-size:13px;font-weight:700;margin-top:8px;text-decoration:underline;text-underline-offset:3px}
+.kit-count{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}.kit-count span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700;color:var(--pine)}
+.usage{background:#e9f2e9;border-radius:16px;padding:18px;margin-top:20px;color:var(--pine);font-size:16px}
 </style>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -66,9 +79,9 @@ a[href*="lovable.dev"],iframe[src*="lovable.dev"],.lovable-badge,#lovable-badge{
 <div class="hero-message"><div class="eyebrow">MÉTODO DIGITAL PASO A PASO</div>
 <h1>Una sola masa.<br><em>25 variedades para tus cajitas navideñas.</em></h1>
 <p class="sub">Deja de saltar entre recetas. Aprende a preparar, decorar y empacar tus galletas paso a paso. Si vas a venderlas, calcula cuánto cobrar con la planilla incluida.</p></div>
-<figure class="hero-image"><img src="/img/metodo-1-masa-celular.webp" alt="Método 1 Masa en un celular, con fichas ilustrativas de recetas, decoración y cajitas navideñas" width="1000" height="1000" fetchpriority="high" decoding="async"><figcaption class="cap">Vista ilustrativa del contenido digital.</figcaption></figure>
+<figure class="hero-image"><div class="product-stage"><div class="book"><img src="/img/muestras/portada.webp" width="720" height="1020" alt="Portada real del recetario Método 1 Masa" fetchpriority="high" decoding="async"></div><div class="phone"><span>FICHA DEL RECETARIO</span><img src="/img/muestras/receta.webp" width="720" height="1020" alt="Ficha real de Estrellas de vainilla" fetchpriority="high" decoding="async"></div></div><figcaption class="cap">Portada y ficha reales del material digital.</figcaption></figure>
 <div class="hero-action"><div class="price-inline"><strong>US$ __CHECKOUT_PRICE__</strong><span>Método completo + 2 bonos<br>Pago único</span></div>
-<p class="trust">Acceso por e-mail · Sin mensualidades · Garantía de 7 días</p></div>
+<a class="cta" href="__CHECKOUT_URL__" data-checkout data-position="hero" target="_blank" rel="noopener">QUIERO EL MÉTODO COMPLETO<small>Recetario, herramientas y 2 bonos</small></a><a class="hero-secondary" href="#contenido">Ver páginas reales del recetario ↓</a><p class="trust">Acceso por e-mail · Sin mensualidades · Garantía de 7 días</p></div>
 </div></header>
 
 <section class="cream" aria-labelledby="improvisar-title"><div class="wrap">
@@ -93,18 +106,16 @@ a[href*="lovable.dev"],iframe[src*="lovable.dev"],.lovable-badge,#lovable-badge{
 </div></section>
 
 <section class="cream" id="contenido" aria-labelledby="contenido-title"><div class="wrap">
-<div class="eyebrow">MIRA QUÉ VIENE DENTRO</div>
-<h2 id="contenido-title">Todo lo que necesitas para pasar de la masa a la cajita.</h2>
-<p class="section-lead">Consulta el paso a paso desde el celular mientras cocinas. Empieza por la masa, elige tus diseños y termina con una presentación lista para regalar o vender.</p>
+<p class="eyebrow">MUESTRAS REALES DEL MATERIAL</p>
+<h2 id="contenido-title">Abre el recetario antes de comprar.</h2>
+<p class="section-lead">Mira cómo está explicada cada variedad y cómo pasas del horno a una cajita lista para regalar. Toca cualquier muestra para leerla en grande.</p>
+<div class="kit-count"><span>4 PDF · 65 páginas</span><span>25 variedades</span><span>6 técnicas de decoración</span><span>Biblioteca y calculadora</span></div>
 <div class="materials">
-<article class="material"><img src="__FOTO1__" alt="Surtido ilustrativo de galletas de distintas formas" width="1200" height="900" loading="lazy" decoding="async"><div class="material-body"><p class="eyebrow">01 · RECETAS</p><h3>Una masa, 25 variaciones</h3><p>Aprende la receta base y elige qué variedades quieres preparar. Puedes empezar con pocas y ampliar el surtido cuando quieras.</p></div></article>
-<article class="material"><img src="/img/cajitas.jpg" alt="Galletas con detalles de glasé en varios diseños navideños" width="1200" height="900" loading="lazy" decoding="async"><div class="material-body"><p class="eyebrow">02 · DECORACIÓN</p><h3>Glasé y 6 técnicas</h3><p>Prepara el glasé y practica distintos acabados para darle a cada galleta su propio diseño, sin manga profesional.</p></div></article>
-<article class="material"><img src="__FOTO2__" alt="Ejemplos ilustrativos de cajas y bolsitas de galletas navideñas" width="1200" height="900" loading="lazy" decoding="async"><div class="material-body"><p class="eyebrow">03 · EMPAQUE Y PRECIOS</p><h3>Cajitas listas para presentar</h3><p>Combina los diseños, elige cómo empacarlos y usa la planilla de costos y el plan de producción para organizar tus tandas.</p></div></article>
-</div>
-<details class="sample"><summary>Ver un ejemplo: así organizarías tu primera cajita</summary>
-<ol><li>Elige algunas variaciones que puedas preparar con tu masa base.</li><li>Combina formas y acabados para que el surtido se vea variado.</li><li>Arma una caja de prueba. Si la vas a vender, apunta lo que gastaste en ingredientes y empaque antes de fijar el precio.</li></ol>
-<p class="note">Ejemplo de uso del método. Las recetas completas y las técnicas están en el acceso digital.</p>
-</details><p class="cap">Las fotografías muestran ideas ilustrativas de presentación. Recibes contenido digital para aprender a prepararlas.</p></div></section>
+<article class="material sample-card"><a class="page-thumb" href="/img/muestras/receta.webp" target="_blank" rel="noopener" aria-label="Ampliar: Ficha de Estrellas de vainilla"><img src="/img/muestras/receta.webp" width="720" height="1020" alt="Ficha de Estrellas de vainilla" loading="lazy" decoding="async"><span class="preview-label">Ampliar muestra ↗</span></a><div class="material-body"><p class="eyebrow">01 · RECETARIO DE 43 PÁGINAS</p><h3>Una ficha por variedad</h3><p>Ingredientes, grosor, temperatura, tiempo orientativo y acabado. Empieza con estrellas de vainilla, arbolitos de canela o corazones de naranja.</p></div></article><article class="material sample-card"><a class="page-thumb" href="/img/muestras/decoracion.webp" target="_blank" rel="noopener" aria-label="Ampliar: Página de técnicas de delineado y relleno"><img src="/img/muestras/decoracion.webp" width="720" height="1020" alt="Página de técnicas de delineado y relleno" loading="lazy" decoding="async"><span class="preview-label">Ampliar muestra ↗</span></a><div class="material-body"><p class="eyebrow">02 · DECORACIÓN</p><h3>Del primer trazo al glasé</h3><p>Aprende a ajustar el glasé y practica seis técnicas, desde delineado y relleno hasta copos y baño parcial de chocolate.</p></div></article><article class="material sample-card"><a class="page-thumb" href="/img/muestras/costos.webp" target="_blank" rel="noopener" aria-label="Ampliar: Página del cuaderno de producción sobre costos"><img src="/img/muestras/costos.webp" width="720" height="1020" alt="Página del cuaderno de producción sobre costos" loading="lazy" decoding="async"><span class="preview-label">Ampliar muestra ↗</span></a><div class="material-body"><p class="eyebrow">03 · CUADERNO DE PRODUCCIÓN</p><h3>Calcula antes de poner precio</h3><p>Registra compras, tandas y pedidos. La calculadora te ayuda a estimar costo por pieza, costo por caja y precio según tu margen.</p></div></article></div>
+<div class="usage"><strong>Cómo lo usas:</strong> abre los PDF desde tu teléfono o computadora. Después de extraer el paquete, puedes abrir la biblioteca y la calculadora en un navegador compatible, sin conexión.</div>
+<p class="cap">Las muestras corresponden al material entregado. Los tiempos y rendimientos de las recetas son orientativos.</p>
+<div class="compact-cta"><a class="cta" href="#precio" data-position="after-previews">VER EL MÉTODO Y LOS 2 BONOS</a></div>
+</div></section>
 
 <section id="demostracion" aria-labelledby="demostracion-title"><div class="wrap">
 <div class="eyebrow">GALLETAS EN VIDEO</div>
@@ -121,8 +132,8 @@ a[href*="lovable.dev"],iframe[src*="lovable.dev"],.lovable-badge,#lovable-badge{
 <div class="eyebrow">2 BONOS INCLUIDOS</div>
 <h2 id="bonos-title">El toque final para que tu cajita se sienta especial.</h2>
 <div class="bonuses">
-<article class="bonus"><img src="/img/mockup_bono1.jpg" alt="Portada del bono Moldes y etiquetas de Navidad" width="900" height="900" loading="lazy" decoding="async"><div class="bonus-body"><p class="eyebrow">BONO 01 · IMPRIMIBLES</p><h3>Moldes y etiquetas de Navidad</h3><p>Imprime los moldes para dar forma a tus galletas y usa las etiquetas para terminar tus empaques.</p></div></article>
-<article class="bonus"><img src="/img/mockup_bono2.jpg" alt="Portada del bono Galletas para empresas" width="900" height="900" loading="lazy" decoding="async"><div class="bonus-body"><p class="eyebrow">BONO 02 · CAJITAS PARA EMPRESAS</p><h3>Presenta tu surtido a oficinas y equipos</h3><p>Encuentra ideas para armar y presentar cajas navideñas que puedas ofrecer como obsequios para equipos, clientes u oficinas.</p></div></article>
+<article class="bonus"><a class="page-thumb" href="/img/muestras/moldes.webp" target="_blank" rel="noopener" aria-label="Ampliar: Hoja imprimible de moldes de estrella y abeto"><img src="/img/muestras/moldes.webp" width="720" height="1020" alt="Hoja imprimible de moldes de estrella y abeto" loading="lazy" decoding="async"><span class="preview-label">Ampliar muestra ↗</span></a><div class="bonus-body"><p class="eyebrow">BONO 01 · IMPRIMIBLES</p><h3>Moldes y etiquetas de Navidad</h3><p>Imprime 6 siluetas, 12 etiquetas y 3 fichas de producto. Incluye una guía para comprobar la escala y recortar los moldes.</p></div></article>
+<article class="bonus"><a class="page-thumb" href="/img/muestras/cotizacion.webp" target="_blank" rel="noopener" aria-label="Ampliar: Modelo de cotización para empresas"><img src="/img/muestras/cotizacion.webp" width="720" height="1020" alt="Modelo de cotización para empresas" loading="lazy" decoding="async"><span class="preview-label">Ampliar muestra ↗</span></a><div class="bonus-body"><p class="eyebrow">BONO 02 · CAJITAS PARA EMPRESAS</p><h3>Presenta tu surtido a oficinas y equipos</h3><p>Tres formatos de caja, mensajes para adaptar y una plantilla para cotizar cantidad, precio y fecha de entrega.</p></div></article>
 </div></div></section>
 
 <section aria-labelledby="usos-title"><div class="wrap">
@@ -141,8 +152,8 @@ a[href*="lovable.dev"],iframe[src*="lovable.dev"],.lovable-badge,#lovable-badge{
 <div class="offer">
 <h2>Empieza a preparar tus cajitas de Navidad.</h2>
 <p class="intro">Recibe el paso a paso desde la primera tanda hasta la cajita, con los 2 bonos incluidos.</p>
-<img class="offer-visual" src="/img/metodo-1-masa-celular.webp" alt="Presentación ilustrativa del Método 1 Masa en el celular" width="1000" height="1000" loading="lazy" decoding="async">
-<ul><li>Una receta base y 25 variaciones para combinar.</li><li>Glasé y 6 técnicas de decoración.</li><li>Ideas de empaque, planilla de costos y plan de producción.</li><li>2 bonos: moldes y etiquetas imprimibles e ideas de cajitas para empresas.</li></ul>
+<img class="offer-visual" src="/img/muestras/portada.webp" alt="Portada real del recetario Método 1 Masa" width="720" height="1020" loading="lazy" decoding="async">
+<ul><li>Una receta base y 25 variaciones para combinar.</li><li>Glasé y 6 técnicas de decoración.</li><li>Cuaderno de producción, biblioteca consultable y calculadora de costos.</li><li>2 bonos: moldes y etiquetas imprimibles e ideas de cajitas para empresas.</li></ul>
 <div class="offer-price"><b class="amount"><small>US$</small> __CHECKOUT_PRICE__</b><p class="note">Un solo pago. Sin mensualidades.</p></div>
 <a class="cta" href="__CHECKOUT_URL__" data-checkout data-position="offer" target="_blank" rel="noopener">QUIERO PREPARAR MIS GALLETAS<small>Compra segura en Hotmart</small></a>
 <p class="trust">Recibes las instrucciones de acceso por e-mail al confirmar el pago.</p>
@@ -150,7 +161,7 @@ a[href*="lovable.dev"],iframe[src*="lovable.dev"],.lovable-badge,#lovable-badge{
 </div></div></section>
 
 <section><div class="wrap narrow"><h2>Tus dudas, resueltas.</h2>
-<details><summary>¿Qué recibo exactamente?</summary><p>Acceso digital al Método 1 Masa y sus 2 bonos. Aprendes a preparar la masa y sus 25 variaciones, decorar, empacar y calcular costos. No se envían galletas ni utensilios.</p></details>
+<details><summary>¿Qué recibo exactamente?</summary><p>Cuatro PDF en español (65 páginas en total), incluidos los dos bonos, más una biblioteca de recetas y calculadora para abrir en el navegador. No se envían galletas ni utensilios.</p></details>
 <details><summary>¿Puedo hacerlo si soy principiante?</summary><p>Sí. La masa base y las variaciones están explicadas paso a paso. Puedes practicar con un horno doméstico, bandejas y cortadores o los moldes del bono.</p></details>
 <details><summary>¿Necesito ingredientes especiales?</summary><p>El método utiliza ingredientes de supermercado y ofrece alternativas. Revisa las instrucciones y usa los ingredientes adecuados para cada receta.</p></details>
 <details><summary>¿También me sirve para vender?</summary><p>Incluye ideas de presentación y herramientas para calcular costos y precios. No garantiza ventas ni ingresos: dependen de tu trabajo, tus costos y tu mercado.</p></details>
