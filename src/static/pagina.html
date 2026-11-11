@@ -66,6 +66,11 @@ a[href*="lovable.dev"],iframe[src*="lovable.dev"],.lovable-badge,#lovable-badge{
 .checkout-panel{margin:20px 0 0;scroll-margin-top:16px}
 .checkout-panel iframe{display:block;width:100%;height:clamp(680px,90svh,1000px);border:1px solid var(--line);border-radius:12px;background:#fff}
 .checkout-panel .note{text-align:center}
+.checkout-heading{position:relative;margin:0 0 12px;padding:12px 16px;border-radius:12px;background:#e9f2e9;color:var(--pine);font-weight:800;text-align:center}
+.checkout-confetti{position:absolute;inset:0;overflow:visible;pointer-events:none}
+.checkout-confetti i{position:absolute;top:50%;left:50%;width:7px;height:10px;border-radius:2px;background:var(--color);animation:checkout-burst 750ms ease-out both}
+@keyframes checkout-burst{from{transform:translate(-50%,-50%) scale(.25);opacity:1}to{transform:translate(var(--x),var(--y)) rotate(var(--spin));opacity:0}}
+@media(prefers-reduced-motion:reduce){.checkout-confetti{display:none}}
 </style>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -161,7 +166,8 @@ a[href*="lovable.dev"],iframe[src*="lovable.dev"],.lovable-badge,#lovable-badge{
 <ul><li>Una receta base y 25 variaciones para combinar.</li><li>Glasé y 6 técnicas de decoración.</li><li>Cuaderno de producción, biblioteca consultable y calculadora de costos.</li><li>2 bonos: moldes y etiquetas imprimibles e ideas de cajitas para empresas.</li></ul>
 <div class="offer-price"><b class="amount"><small>US$</small> __CHECKOUT_PRICE__</b><p class="note">Un solo pago. Sin mensualidades.</p></div>
 <a class="cta" href="__CHECKOUT_URL__" data-checkout data-position="offer" aria-controls="checkout-panel" aria-expanded="false">QUIERO PREPARAR MIS GALLETAS<small>Compra segura en Hotmart</small></a>
-<div id="checkout-panel" class="checkout-panel" tabindex="-1" role="region" aria-label="Pago seguro de Hotmart" hidden>
+<div id="checkout-panel" class="checkout-panel" tabindex="-1" role="region" aria-labelledby="checkout-heading" hidden>
+<p id="checkout-heading" class="checkout-heading">Completa tu pago abajo <span aria-hidden="true">↓</span></p>
 <iframe id="checkout-frame" title="Formulario de pago de Hotmart" allow="payment"></iframe>
 <p class="note"><a id="checkout-fallback" target="_blank" rel="noopener">¿No carga el formulario? Abre el pago en Hotmart.</a></p>
 </div>
@@ -231,6 +237,26 @@ const offerButton=document.querySelector("[data-checkout]");
 const checkoutPanel=document.getElementById("checkout-panel");
 const checkoutFrame=document.getElementById("checkout-frame");
 const checkoutFallback=document.getElementById("checkout-fallback");
+const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
+function celebrateCheckout(){
+  if(reducedMotion.matches)return;
+  const burst=document.createElement("span");
+  burst.className="checkout-confetti";
+  burst.setAttribute("aria-hidden","true");
+  const colors=["#b92837","#205740","#cb962f","#de6961"];
+  for(let i=0;i<18;i++){
+    const piece=document.createElement("i");
+    const angle=i*2*Math.PI/18;
+    const distance=30+Math.random()*48;
+    piece.style.setProperty("--color",colors[i%colors.length]);
+    piece.style.setProperty("--x",Math.cos(angle)*distance+"px");
+    piece.style.setProperty("--y",Math.sin(angle)*distance+"px");
+    piece.style.setProperty("--spin",i*37+"deg");
+    burst.append(piece);
+  }
+  document.getElementById("checkout-heading").append(burst);
+  window.setTimeout(()=>burst.remove(),800);
+}
 offerButton.href=checkoutUrl(offerButton.href);
 offerButton.addEventListener("click",event=>{
   if(event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
@@ -241,10 +267,11 @@ offerButton.addEventListener("click",event=>{
     checkoutFrame.src=offerButton.href;
     checkoutPanel.hidden=false;
     offerButton.setAttribute("aria-expanded","true");
+    celebrateCheckout();
     reportMeta("InitiateCheckout",{value:__CHECKOUT_VALUE__,currency:"USD"}).catch(()=>{});
   }
   checkoutPanel.focus({preventScroll:true});
-  checkoutPanel.scrollIntoView({block:"start"});
+  checkoutPanel.scrollIntoView({block:"start",behavior:reducedMotion.matches?"instant":"smooth"});
 });
 let leadSent=false;
 document.querySelectorAll('a[href="#precio"]').forEach(a=>a.addEventListener("click",()=>{
