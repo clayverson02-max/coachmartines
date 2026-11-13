@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import rawHtml from "../static/pagina.html?raw";
-import { CHECKOUT_PRICE_ES, CHECKOUT_URL, CHECKOUT_VALUE } from "../config/galletas";
+import plansHtml from "../static/planes.html?raw";
+import { CHECKOUT_PRICE_ES, CHECKOUT_URL, CHECKOUT_VALUE, BASIC_PRICE_ES, BASIC_CHECKOUT_URL, BASIC_CHECKOUT_VALUE } from "../config/galletas";
 
 import foto1 from "../assets/galletas-foto-1.webp.asset.json";
 import foto2 from "../assets/galletas-foto-2.webp.asset.json";
@@ -10,6 +11,11 @@ const FOTO1 = foto1.url;
 const FOTO2 = foto2.url;
 
 const html = rawHtml
+  .replaceAll('__HERO_PLANS__', plansHtml.replaceAll('__PLAN_POSITION__', 'hero'))
+  .replaceAll('__CLOSING_PLANS__', plansHtml.replaceAll('__PLAN_POSITION__', 'closing'))
+  .replaceAll('__BASIC_PRICE__', BASIC_PRICE_ES)
+  .replaceAll('__BASIC_CHECKOUT_URL__', BASIC_CHECKOUT_URL)
+  .replaceAll('__BASIC_VALUE__', String(BASIC_CHECKOUT_VALUE))
   .replaceAll("__CHECKOUT_PRICE__", CHECKOUT_PRICE_ES)
   .replaceAll("__CHECKOUT_URL__", CHECKOUT_URL)
   .replaceAll("__CHECKOUT_VALUE__", String(CHECKOUT_VALUE))
@@ -26,6 +32,8 @@ export const Route = createFileRoute("/")({
     { property: 'og:title', content: 'Galletas Navideñas · Método 1 Masa' },
     { property: 'og:description', content: 'De una sola masa a tus primeras cajitas navideñas. Método digital paso a paso y 2 bonos incluidos.' },
     { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary_large_image' },
+    { property: 'og:image', content: 'https://galletas-navidenas.lovable.app/img/metodo-1-masa-celular.webp' },
+    { name: 'twitter:image', content: 'https://galletas-navidenas.lovable.app/img/metodo-1-masa-celular.webp' },
   ] }),
   server: {
     handlers: {

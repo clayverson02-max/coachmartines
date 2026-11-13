@@ -6,6 +6,7 @@ const html = readFileSync('src/static/pagina.html', 'utf8');
 const rule = html.split('// BEGIN seasonal date rule')[1]?.split('// END seasonal date rule')[0];
 if (!rule) throw new Error('Seasonal date rule is missing');
 const daysUntilChristmas = new Function(`${rule}; return daysUntilChristmas;`)() as (date: Date) => number | null;
+const productionWeekend = new Function(`${rule}; return productionWeekend;`)() as (date: Date) => { saturday: number; sunday: number; weekends: number } | null;
 
 describe('Galletas seasonal date', () => {
   it('counts calendar days to December 25 of the current year', () => {
@@ -17,5 +18,15 @@ describe('Galletas seasonal date', () => {
     expect(daysUntilChristmas(new Date(2026, 11, 25, 23, 59))).toBe(0);
     expect(daysUntilChristmas(new Date(2026, 11, 26))).toBeNull();
     expect(daysUntilChristmas(new Date(2026, 11, 31))).toBeNull();
+  });
+  it('selects the last full weekend before December 22 and counts remaining weekends', () => {
+    expect(productionWeekend(new Date(2026, 10, 13))).toEqual({ saturday: 19, sunday: 20, weekends: 6 });
+    expect(productionWeekend(new Date(2026, 11, 20))).toEqual({ saturday: 19, sunday: 20, weekends: 1 });
+    expect(productionWeekend(new Date(2026, 11, 21))).toEqual({ saturday: 19, sunday: 20, weekends: 0 });
+    expect(productionWeekend(new Date(2024, 11, 1))).toEqual({ saturday: 14, sunday: 15, weekends: 3 });
+  });
+  it('keeps the production block on December 24 and hides it after that date', () => {
+    expect(productionWeekend(new Date(2026, 11, 24))).toEqual({ saturday: 19, sunday: 20, weekends: 0 });
+    expect(productionWeekend(new Date(2026, 11, 25))).toBeNull();
   });
 });

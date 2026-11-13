@@ -9,3 +9,5 @@
 - [ ] Verificar recepción de Galletas en Meta tras publicación autorizada; la versión pública no se ha actualizado.
 - [x] Reescribir copy, adelantar muestras reales y compactar el diseño móvil sin cambiar precio, checkout ni pixel.
 - [x] Verificar fecha estacional, muestras, navegación a Hotmart y vista móvil/escritorio; guardar sin publicar.
+- [ ] Añadir dos paquetes, barra móvil, contraste y movimiento accesible.
+- [ ] Verificar ambos checkouts/eventos, fechas y vistas 320/390/escritorio; guardar sin publicar.
