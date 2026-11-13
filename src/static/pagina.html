@@ -116,6 +116,28 @@ section.cream:before,#demostracion:before{content:'✧';position:absolute;right:
 @media(max-width:759px){body{font-size:17px;padding-bottom:calc(96px + env(safe-area-inset-bottom))}.wrap{padding-left:20px;padding-right:20px}.mobile-buy{position:fixed;display:flex;gap:12px;align-items:center;justify-content:space-between;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--paper);color:var(--ink);box-shadow:var(--bar-shadow);z-index:50;transform:translateY(110%);visibility:hidden;transition:transform .3s ease,visibility .3s}.mobile-buy.is-visible{transform:none;visibility:visible}.mobile-buy p{min-width:0;margin:0;font-size:17px;line-height:1.6}.mobile-buy .cta{width:auto;flex:none;margin:0;padding:12px 18px;min-height:52px}.plan-card{padding:22px 18px}}
 @media(max-width:360px){.wrap{padding-left:16px;padding-right:16px}.brand{font-size:17px;align-items:flex-start}.brand span{max-width:140px}.mobile-buy{gap:8px;padding-left:12px;padding-right:12px}.mobile-buy .cta{padding:12px}.plan-card h3{font-size:26px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}.plan-complete{transform:none}.sample-card .page-thumb:hover,.sample-card .page-thumb:active{transform:none}.cta:active{transform:none}}
+/* Botones de recorrido: bajan de seccion, nunca van al checkout. */
+.journey-wrap{margin:28px 0 0;text-align:center}
+.journey{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;
+ padding:14px 26px;border:2px solid var(--pine);border-radius:8px;background:transparent;
+ color:var(--pine);font:800 17px/1.4 var(--h);text-decoration:none;max-width:100%;text-align:center}
+.journey:hover,.journey:focus-visible{background:var(--cream)}
+.offer-section .journey,.not-this .journey{border-color:var(--pine)}
+.hero-action{display:flex;justify-content:center}
+/* Quiebre de valor */
+.valuebreak{max-width:650px;margin:0 auto 24px;background:#fffaf3;color:var(--ink);
+ border-radius:20px;padding:24px 20px}
+.valuebreak h3{font:900 24px/1.2 var(--h);text-align:center;margin:0 0 16px}
+.valuebreak ul{list-style:none;margin:0;padding:0}
+.valuebreak li{display:flex;gap:14px;justify-content:space-between;align-items:baseline;
+ padding:12px 0;border-bottom:1px solid var(--line);font-size:17px;line-height:1.5}
+.valuebreak li b{white-space:nowrap;font-weight:800}
+.vb-total{display:flex;justify-content:space-between;gap:14px;align-items:baseline;
+ margin:14px 0 0;padding-top:14px;border-top:2px solid var(--pine);font-size:19px;font-weight:800}
+.vb-hoy{margin:18px 0 0;text-align:center;font:800 22px/1.3 var(--h);color:var(--pine)}
+.vb-hoy b{display:block;font-size:46px;line-height:1.1;color:var(--red)}
+.vb-nota{margin:14px 0 0;font-size:15px;line-height:1.5;color:var(--muted);text-align:center}
+@media(min-width:760px){.valuebreak{padding:30px 28px}.vb-nota{font-size:16px}}
 </style>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -144,15 +166,17 @@ Tu navegador no puede reproducir este vídeo. <a href="/videos/mini-vsl-navidad.
 </figure>
 </div>
 <figure class="hero-image"><div class="product-stage"><div class="book"><img src="/img/muestras/portada.webp" width="720" height="1020" alt="Portada real del recetario Método 1 Masa" fetchpriority="high" decoding="async"></div><div class="phone"><span>FICHA DEL RECETARIO</span><img src="/img/muestras/receta.webp" width="720" height="1020" alt="Ficha real de Estrellas de vainilla" fetchpriority="high" decoding="async"></div></div><figcaption class="cap">Portada y ficha reales del material digital.</figcaption></figure>
-<div class="hero-action" id="hero-plans">__HERO_PLANS__</div></div></header>
+<div class="hero-action"><a class="journey" href="#video-summary">Ver de qué se trata ↓</a></div></div></header>
 
-<section class="video-summary" aria-labelledby="video-summary-title"><div class="wrap narrow">
+<section class="video-summary" id="video-summary" aria-labelledby="video-summary-title"><div class="wrap narrow">
 <h2 id="video-summary-title">Lo que vas a ver en el video</h2>
 <ul class="video-points">
 <li><span aria-hidden="true">✓</span>La masa base y por qué una sola sirve para 25 variedades</li>
 <li><span aria-hidden="true">✓</span>Cómo se decora con glasé sin que se corra</li>
 <li><span aria-hidden="true">✓</span>Cómo armar la cajita y calcular cuánto cobrar</li>
 </ul>
+
+<p class="journey-wrap"><a class="journey" href="#contenido">Mira el material real ↓</a></p>
 </div></section>
 
 <section class="cream" id="contenido" aria-labelledby="contenido-title"><div class="wrap">
@@ -164,9 +188,11 @@ Tu navegador no puede reproducir este vídeo. <a href="/videos/mini-vsl-navidad.
 <article class="material sample-card"><a class="page-thumb" href="/img/muestras/receta.webp" target="_blank" rel="noopener" aria-label="Ampliar: Ficha de Estrellas de vainilla"><img src="/img/muestras/receta.webp" width="720" height="1020" alt="Ficha de Estrellas de vainilla" loading="lazy" decoding="async"><span class="preview-label">Ampliar muestra ↗</span></a><div class="material-body"><p class="eyebrow">01 · RECETARIO DE 43 PÁGINAS</p><h3>Elige las protagonistas de tu cajita</h3><p>Ingredientes, grosor, temperatura, tiempo orientativo y acabado. Empieza con estrellas de vainilla, arbolitos de canela o corazones de naranja.</p></div></article><article class="material sample-card"><a class="page-thumb" href="/img/muestras/decoracion.webp" target="_blank" rel="noopener" aria-label="Ampliar: Página de técnicas de delineado y relleno"><img src="/img/muestras/decoracion.webp" width="720" height="1020" alt="Página de técnicas de delineado y relleno" loading="lazy" decoding="async"><span class="preview-label">Ampliar muestra ↗</span></a><div class="material-body"><p class="eyebrow">02 · DECORACIÓN</p><h3>Ese acabado que hace mirar dos veces</h3><p>Aprende a ajustar el glasé y practica seis técnicas, desde delineado y relleno hasta copos y baño parcial de chocolate.</p></div></article><article class="material sample-card"><a class="page-thumb" href="/img/muestras/costos.webp" target="_blank" rel="noopener" aria-label="Ampliar: Página del cuaderno de producción sobre costos"><img src="/img/muestras/costos.webp" width="720" height="1020" alt="Página del cuaderno de producción sobre costos" loading="lazy" decoding="async"><span class="preview-label">Ampliar muestra ↗</span></a><div class="material-body"><p class="eyebrow">03 · CUADERNO DE PRODUCCIÓN</p><h3>Que tu precio también tenga sentido</h3><p>Registra compras, tandas y pedidos. La calculadora te ayuda a estimar costo por pieza, costo por caja y precio según tu margen.</p></div></article></div>
 <div class="usage"><strong>Cómo lo usas:</strong> consulta las guías desde tu teléfono o computadora mientras preparas tus galletas. Después de extraer el paquete, puedes abrir la biblioteca y la calculadora en un navegador compatible, sin conexión.</div>
 <p class="cap">Las muestras corresponden al material entregado. Los tiempos y rendimientos de las recetas son orientativos.</p>
+
+<p class="journey-wrap"><a class="journey" href="#improvisar">¿Y si este año las hicieras tú? ↓</a></p>
 </div></section>
 
-<section class="cream" aria-labelledby="improvisar-title"><div class="wrap">
+<section class="cream" id="improvisar" aria-labelledby="improvisar-title"><div class="wrap">
 <div class="eyebrow">¿Y SI ESTE AÑO LAS HICIERAS TÚ?</div>
 <h2 id="improvisar-title">¿Y si este año las hicieras tú?</h2>
 <p class="section-lead">Cada diciembre ves las cajitas en Instagram y piensas lo mismo.</p>
@@ -174,9 +200,11 @@ Tu navegador no puede reproducir este vídeo. <a href="/videos/mini-vsl-navidad.
 <article class="friction"><strong>«No sé qué receta aguanta el corte y no se deforma.»</strong><p>→ Una sola masa base, probada, que mantiene la forma en el horno.</p></article>
 <article class="friction"><strong>«Decoro y el glasé se me corre por todos lados.»</strong><p>→ Seis técnicas explicadas paso a paso, con la consistencia exacta del glasé para cada una.</p></article>
 <article class="friction"><strong>«Si alguien me las pide, no sé ni cuánto cobrar.»</strong><p>→ Un cuaderno de producción donde pones tus ingredientes y te sale el costo por cajita.</p></article>
-</div></div></section>
+</div>
+<p class="journey-wrap"><a class="journey" href="#metodo">De la primera tanda a la cajita ↓</a></p>
+</div></section>
 
-<section aria-labelledby="metodo-title"><div class="wrap">
+<section id="metodo" aria-labelledby="metodo-title"><div class="wrap">
 <div class="eyebrow">DE LA PRIMERA TANDA A LA CAJITA</div>
 <h2 id="metodo-title">Una receta base. Muchas formas de provocar un «¡qué bonitas!».</h2>
 <div class="method-grid"><div class="steps">
@@ -185,6 +213,8 @@ Tu navegador no puede reproducir este vídeo. <a href="/videos/mini-vsl-navidad.
 <div class="step"><b>3</b><div><h3>Convierte tu surtido en un regalo deseable</h3><p>Combina tus galletas, cuida el empaque y añade una etiqueta. ¿Quieres ofrecerlas? Calcula primero el costo de tu cajita y decide cuánto cobrar.</p></div></div>
 </div><img class="gift-photo" src="__FOTO2__" alt="Caja y bolsitas ilustrativas de galletas navideñas para regalar" width="1200" height="900" loading="lazy" decoding="async"></div>
 <p class="cap">Las fotos muestran ideas ilustrativas de presentación.</p>
+
+<p class="journey-wrap"><a class="journey" href="#demostracion">Mira cómo queda la cajita ↓</a></p>
 </div></section>
 
 
@@ -198,7 +228,7 @@ Tu navegador no puede reproducir este vídeo. <a href="/videos/mini-vsl-navidad.
 <figure><h3>Un detalle que da gusto regalar</h3><div class="video-frame"><video data-lazy-video data-src="__VIDEO2__" poster="__FOTO1__" muted loop playsinline controls preload="none" width="720" height="1280" aria-label="Escena ilustrativa de personas probando galletas"></video></div></figure>
 </div>
 <p class="cap">Escenas e imágenes ilustrativas. El producto es contenido digital para aprender; no incluye galletas físicas.</p>
-<a class="section-next" href="#bonos">Ver los 2 bonos <span aria-hidden="true">↓</span></a>
+<a class="journey" href="#bonos">Ver los 2 bonos ↓</a>
 </div></section>
 
 <section class="cream" id="bonos" aria-labelledby="bonos-title"><div class="wrap">
@@ -208,7 +238,7 @@ Tu navegador no puede reproducir este vídeo. <a href="/videos/mini-vsl-navidad.
 <article class="bonus"><a class="page-thumb" href="/img/muestras/moldes.webp" target="_blank" rel="noopener" aria-label="Ampliar: Hoja imprimible de moldes de estrella y abeto"><img src="/img/muestras/moldes.webp" width="720" height="1020" alt="Hoja imprimible de moldes de estrella y abeto" loading="lazy" decoding="async"><span class="preview-label">Ampliar muestra ↗</span></a><div class="bonus-body"><p class="eyebrow">BONO 01 · IMPRIMIBLES</p><h3>Moldes y etiquetas de Navidad</h3><p>Imprime 6 siluetas, 12 etiquetas y 3 fichas de producto. Incluye una guía para comprobar la escala y recortar los moldes.</p></div></article>
 <article class="bonus"><a class="page-thumb" href="/img/muestras/cotizacion.webp" target="_blank" rel="noopener" aria-label="Ampliar: Modelo de cotización para empresas"><img src="/img/muestras/cotizacion.webp" width="720" height="1020" alt="Modelo de cotización para empresas" loading="lazy" decoding="async"><span class="preview-label">Ampliar muestra ↗</span></a><div class="bonus-body"><p class="eyebrow">BONO 02 · CAJITAS PARA EMPRESAS</p><h3>Presenta tu surtido a oficinas y equipos</h3><p>Tres formatos de caja, mensajes para adaptar y una plantilla para cotizar cantidad, precio y fecha de entrega.</p></div></article>
 </div>
-<a class="section-next" href="#usos">Cómo aprovechar el método <span aria-hidden="true">↓</span></a>
+<a class="journey" href="#usos">Para regalar o para vender ↓</a>
 </div></section>
 
 <section id="usos" aria-labelledby="usos-title"><div class="wrap">
@@ -220,7 +250,18 @@ Tu navegador no puede reproducir este vídeo. <a href="/videos/mini-vsl-navidad.
 <article class="use"><p class="eyebrow">PARA VENDER</p><h3>Una primera cajita para empezar a ofrecer</h3><p>Diciembre es el mes en que más se regalan cajitas. El cuaderno de producción te dice cuánto te cuesta cada una, para que pongas precio con cabeza y no a ojo.</p></article>
 </div>
 <p class="cost-note"><strong>Si la vas a vender:</strong> calcula ingredientes, empaque y tu tiempo antes de decidir el precio de cada caja.</p>
-<a class="section-next" href="#precio" data-position="before-offer">Ver la oferta completa <span aria-hidden="true">↓</span></a>
+<a class="journey" href="#precio">Ver los paquetes ↓</a>
+</div></section>
+
+<section class="not-this cream" id="not-this" aria-labelledby="not-this-title"><div class="wrap narrow">
+<h2 id="not-this-title">Qué NO es esto</h2>
+<ul>
+<li>No son galletas físicas. Es el material digital para que las hagas tú.</li>
+<li>No es un curso en video de 10 horas. Es un recetario para tener al lado del horno.</li>
+<li>No necesitas horno industrial ni ingredientes raros.</li>
+</ul>
+
+<p class="journey-wrap"><a class="journey" href="#precio">Ver los paquetes ↓</a></p>
 </div></section>
 
 <section class="offer-section" id="precio"><div class="wrap">
@@ -230,20 +271,26 @@ Tu navegador no puede reproducir este vídeo. <a href="/videos/mini-vsl-navidad.
 <p class="closing-line">El año pasado también lo pensaste.</p>
 <p>Elige solo la masa o lleva el método completo, con decoración, costos y los 2 bonos.</p>
 </div>
-<div id="closing-plans">__CLOSING_PLANS__</div>
+<div class="valuebreak">
+<h3>Si compraras cada parte por separado</h3>
+<ul>
+<li><span>Recetario completo de 43 páginas con las 25 variedades</span><b>US$ 12</b></li>
+<li><span>Las 6 técnicas de decoración con glasé</span><b>US$ 14</b></li>
+<li><span>Cuaderno de producción y costos</span><b>US$ 6</b></li>
+<li><span>BONO 01 · Imprimibles: moldes, 12 etiquetas y 3 fichas</span><b>US$ 4</b></li>
+<li><span>BONO 02 · Cajitas para empresas: 3 formatos y plantilla de cotización</span><b>US$ 2</b></li>
+</ul>
+<p class="vb-total"><span>Total por separado</span><b>US$ 38</b></p>
+<p class="vb-hoy">Hoy, todo junto: <b>US$ 8,50</b></p>
+<p class="vb-nota">Valores de referencia de materiales similares vendidos por separado. No es un precio anterior de este producto.</p>
+</div>
 <p class="production-note" id="production-note" hidden></p>
-<p class="trust">Recibes las instrucciones de acceso por e-mail al confirmar el pago.</p>
+<div id="closing-plans">__CLOSING_PLANS__</div>
 <div class="guarantee"><b>7</b><p><strong>Garantía de 7 días.</strong>Si el contenido no es para ti, puedes solicitar el reembolso dentro de ese plazo.</p></div>
+<p class="trust">Recibes las instrucciones de acceso por e-mail al confirmar el pago.</p>
 </div></section>
 
-<section class="not-this cream" aria-labelledby="not-this-title"><div class="wrap narrow">
-<h2 id="not-this-title">Qué NO es esto</h2>
-<ul>
-<li>No son galletas físicas. Es el material digital para que las hagas tú.</li>
-<li>No es un curso en video de 10 horas. Es un recetario para tener al lado del horno.</li>
-<li>No necesitas horno industrial ni ingredientes raros.</li>
-</ul>
-</div></section>
+
 
 <section><div class="wrap narrow"><h2>Tus dudas, resueltas.</h2>
 <details><summary>¿Qué recibo exactamente?</summary><p>Con Solo la masa recibes la masa base, sus 25 variedades y los tiempos y temperaturas. Con Método completo recibes además el recetario completo de 43 páginas, las 6 técnicas de decoración, el cuaderno de producción y costos y los 2 bonos. No se envían galletas ni utensilios.</p></details>
@@ -256,7 +303,7 @@ Tu navegador no puede reproducir este vídeo. <a href="/videos/mini-vsl-navidad.
 
 <aside class="mobile-buy" id="mobile-buy" aria-label="Comprar Método completo" inert>
 <p>Método completo · <strong>US$ __CHECKOUT_PRICE__</strong></p>
-<a class="cta" href="#precio">Lo quiero</a>
+<a class="cta" href="#precio">Ver los paquetes</a>
 </aside>
 <footer><div class="wrap"><p class="footer-brand">Método 1 Masa · Galletas Navideñas</p><button type="button" class="privacy-link" id="privacy-open">Privacidad y publicidad</button></div></footer>
 <dialog class="policy-dialog" id="privacy-dialog" aria-labelledby="privacy-title">
