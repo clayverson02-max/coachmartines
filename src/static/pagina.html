@@ -138,6 +138,15 @@ section.cream:before,#demostracion:before{content:'✧';position:absolute;right:
 .vb-hoy b{display:block;font-size:46px;line-height:1.1;color:var(--red)}
 .vb-nota{margin:14px 0 0;font-size:15px;line-height:1.5;color:var(--muted);text-align:center}
 @media(min-width:760px){.valuebreak{padding:30px 28px}.vb-nota{font-size:16px}}
+/* Latido lento del boton principal: llama la atencion sin parpadear. */
+@keyframes cta-latido{
+ 0%{box-shadow:0 5px 0 var(--cta-shadow),0 0 0 0 rgba(185,31,56,.45);transform:scale(1)}
+ 55%{box-shadow:0 5px 0 var(--cta-shadow),0 0 0 16px rgba(185,31,56,0);transform:scale(1.018)}
+ 100%{box-shadow:0 5px 0 var(--cta-shadow),0 0 0 0 rgba(185,31,56,0);transform:scale(1)}}
+.plan-cta{animation:cta-latido 2.8s ease-out infinite;will-change:transform}
+.plan-cta:hover,.plan-cta:focus-visible{animation-play-state:paused}
+.mobile-buy .cta{animation:cta-latido 2.8s ease-out infinite}
+@media(prefers-reduced-motion:reduce){.plan-cta,.mobile-buy .cta{animation:none!important;transform:none!important}}
 </style>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
