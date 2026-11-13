@@ -14,3 +14,4 @@
 - Send Meta browser and server events with the same event ID; signed expiring first-party sessions and strict validation protect the public server function, while credentials remain exclusively in encrypted Cloud secrets.
 - Use approved media through Lovable Assets pointer imports; this preserves supplied imagery without committing binaries.
 - The static Galletas page reports through its own signed same-origin public endpoint; keep quiz tracking separate and gate both browser/server sends on advertising permission.
+- Calculate seasonal sales copy in the static page using local calendar dates normalized to UTC day boundaries; test the served inline rule directly to avoid timezone drift and duplicated logic.

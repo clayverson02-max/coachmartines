@@ -7,3 +7,5 @@
 - [x] Ajustar precios: Paquete Completo US$6,50 y Paquete Básico US$4,50 (etiqueta de descuento recalculada a 87%).
 - [x] Integrar pixel de Galletas y API protegida en Cloud, conservando precio y checkout.
 - [ ] Verificar recepción de Galletas en Meta tras publicación autorizada; la versión pública no se ha actualizado.
+- [x] Reescribir copy, adelantar muestras reales y compactar el diseño móvil sin cambiar precio, checkout ni pixel.
+- [x] Verificar fecha estacional, muestras, navegación a Hotmart y vista móvil/escritorio; guardar sin publicar.
